@@ -13,6 +13,7 @@ Host: 1r.platform.com
 Authorization: (Bearer Token)
 Accept: application/ld+json
 Content-Type: application/ld+json
+
 {
   "grossWeight":
     {
@@ -33,6 +34,7 @@ Host: 1r.platform.com
 Authorization: (Bearer Token)
 Accept: application/ld+json
 Content-Type: application/ld+json
+
 {
   "@context": {
       "@vocab": "http://onerecord.iata.org/"
@@ -62,6 +64,7 @@ Host: 1r.platform.com
 Authorization: (Bearer Token)
 Accept: application/ld+json
 Content-Type: application/ld+json
+
 {
   "totalGrossWeight":
     {
@@ -84,6 +87,7 @@ Host: 1r.platform.com
 Authorization: (Bearer Token)
 Accept: application/ld+json
 Content-Type: application/ld+json
+
 {
   "containedPiece": "1r.platform.com/shipper/piece/8dc"
 }
@@ -103,6 +107,7 @@ PATCH /shipper/piece/8dc HTTP/1.1
 Host: 1r.platform.com 
 Authorization: (Bearer Token)
 Content-Type: application/ld+json
+
 {
   "revision":"1",
   "description":"Backlink for Piece in Shipment",

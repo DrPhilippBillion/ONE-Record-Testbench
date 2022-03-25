@@ -8,13 +8,14 @@ This document is at early stage, please correct and comment extensively!
 ### Step 1: Shipper creates piece with grossWeight
 **Input**
 ```http
-POST /shipper/piece/8dc HTTP/1.1
+POST /shipper/piece/ HTTP/1.1
 Host: 1r.platform.com 
 Authorization: (Bearer Token)
 Accept: application/ld+json
 Content-Type: application/ld+json
 
 {
+**full JSON incl. header to be added**
   "grossWeight":
     {
     "value": 85,
@@ -24,12 +25,14 @@ Content-Type: application/ld+json
 ```
 **Expected Output**
 ```http
-201 Logistics Object has been published to the Internet of Logistics
+HTTP/1.1 201 Created
+Date: ...
+Location: http://1r.platform.com/shipper/piece/8dc
 ```
 ### Step 2: Shipper publishes piece towards Forwarder
 **Input**
 ```http
-POST /forwarder/??? HTTP/1.1
+POST /forwarder/**???**
 Host: 1r.platform.com 
 Authorization: (Bearer Token)
 Accept: application/ld+json
@@ -53,13 +56,16 @@ Content-Type: application/ld+json
 
 Is is unclear, where the post-request should go. It´s looking like the target system is the external system, but I wonder if it should be a post request then....
 
+**Issues**
+
+
 ## UseCase 2: Forwarder subscribes on Shipper´s piece
 ***tbd***
 ## UseCase 3: Forwarder creates and links shipment 
 ### Step 1: Forwarder creates shipment with totalGrossWeight
 **Input**
 ```http
-POST /forwarder/shipment/a01 HTTP/1.1
+POST /forwarder/shipment HTTP/1.1
 Host: 1r.platform.com 
 Authorization: (Bearer Token)
 Accept: application/ld+json
@@ -75,8 +81,11 @@ Content-Type: application/ld+json
 ```
 **Expected Output**
 ```http
-201 Logistics Object has been published to the Internet of Logistics
+HTTP/1.1 201 Created
+Date: ...
+Location: http://1r.platform.com/forwarder/shipment/a01
 ```
+
 **Comment**
 
 ### Step 2: Forwarder links piece in shipment
@@ -96,9 +105,9 @@ Content-Type: application/ld+json
 ```http
 201 Logistics Object has been published to the Internet of Logistics
 ```
-**Comment**
+**Issues**
 
-Is this how data fields are added after their creation?????
+Is this not clear to me, how data fields are added after the creation of the LO. This is a suggestion to be evaluated, based on POST. This applies if the field wasn´t ever created. If it exists, PATCH might be used.
 
 ### Step 3: Forwarder sets CR to Shipper/piece to set backlink for shipment
 **Input**

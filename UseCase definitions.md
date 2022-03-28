@@ -164,5 +164,5 @@ Content-Type: application/ld+json
 ## UseCases >=11: Check Audit Trail, Multi-Link environment, Security, Authentication, etc.
 ***tbd***
 
-![UseCases](/EmbeddedIllustrations/ONE Record - Hands-on-Usecases.png)
+![UseCases](/EmbeddedIllustrations/UseCases.png)
         

@@ -6,29 +6,35 @@ This document is at early stage, please correct and comment extensively!
 
 ## UseCase 1: Shipper creates piece
 ### Step 1: Shipper creates piece with grossWeight
-**Input**
-```http
-POST /shipper/piece/ HTTP/1.1
-Host: 1r.platform.com 
-Authorization: (Bearer Token)
-Accept: application/ld+json
+**Example HTTP request**
+```
+POST /shipper/piece HTTP/1.1
+Host: 1r.example.com
 Content-Type: application/ld+json
+Accept: application/ld+json
 
 {
-**full JSON incl. header to be added**
-  "grossWeight":
-    {
-    "value": 85,
-    "unit": "kg"
-    }
+	"@context": {
+		"cargo": "https://onerecord.iata.org/",
+		"api": "https://onerecord.iata.org/api/"
+	},
+	"@type": "cargo:Piece",
+	"cargo:Piece#grossWeight": {
+		"@type": [
+		  "cargo:Value"
+		],
+		"cargo:Value#unit": "kg",
+		"cargo:Value#value": 85
+	}	
 }
+
+
+201 Created
+Location: https://1r.example.com/shipper/Piece_8dc
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/Piece
 ```
-**Expected Output**
-```http
-HTTP/1.1 201 Created
-Date: ...
-Location: http://1r.platform.com/shipper/piece/8dc
-```
+
 ### Step 2: Shipper publishes piece towards Forwarder
 **Input**
 ```http

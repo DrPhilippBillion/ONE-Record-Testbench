@@ -6,13 +6,12 @@ This document is at early stage, please correct and comment extensively!
 
 ## UseCase 1: Shipper creates piece
 ### Step 1: Shipper creates piece with grossWeight
-**Example HTTP request**
-```
+#### POST-Request
+```http
 POST /shipper/piece HTTP/1.1
 Host: 1r.example.com
 Content-Type: application/ld+json
 Accept: application/ld+json
-
 {
 	"@context": {
 		"cargo": "https://onerecord.iata.org/",
@@ -21,22 +20,23 @@ Accept: application/ld+json
 	"@type": "cargo:Piece",
 	"cargo:Piece#grossWeight": {
 		"@type": [
-		  "cargo:Value"
-		],
+			"cargo:Value"],
 		"cargo:Value#unit": "kg",
 		"cargo:Value#value": 85
 	}	
 }
 
-
+#### Expected Answer
 201 Created
 Location: https://1r.example.com/shipper/Piece_8dc
 Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/Piece
-```
+
+#### Comments
+- none -
 
 ### Step 2: Shipper publishes piece towards Forwarder
-**Input**
+#### POST-Request
 ```http
 POST /forwarder/**???**
 Host: 1r.platform.com 
@@ -54,15 +54,15 @@ Content-Type: application/ld+json
   "logisticsObjectRef": "/shipper/piece/8dc"
 }
 ```
-**Expected Output**
+#### Expected Answer
 ```http
 204 Notification received successfully
 ```
-**Comment**
+#### Comments
 
 Is is unclear, where the post-request should go. It´s looking like the target system is the external system, but I wonder if it should be a post request then....
 
-**Issues**
+#### Issues
 
 
 ## UseCase 2: Forwarder subscribes on Shipper´s piece

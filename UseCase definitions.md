@@ -51,17 +51,16 @@ Host: 1r.portal.com
 Content-Type: application/ld+json
 Accept: application/ld+json
 {
-	"@context": {
-		"cargo": "https://onerecord.iata.org/",
-		"api": "https://onerecord.iata.org/api/"
-	},
-	"@type": "cargo:Piece",
-	"cargo:Piece#grossWeight": {
-		"@type": [
-			"cargo:Value"],
-		"cargo:Value#unit": "kg",
-		"cargo:Value#value": 85
-	}	
+  "@context": {
+    "cargo": "https://onerecord.iata.org/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:Piece",
+  "cargo:Piece#grossWeight": {
+    "@type": "cargo:Value",
+    "cargo:Value#unit": "kg",
+    "cargo:Value#value": 85
+  }
 }
 ```
 
@@ -76,43 +75,85 @@ LO-type: https://onerecord.iata.org/Piece
 
 
 ### Step 2: Shipper publishes piece towards Forwarder
-
 #### Scope
 
 Scope of this step is to evaluate the publish function in ONE Record.
 
+### Step 2.1: Shipper proposes a subscription to Forwarder
+
 #### Todos
 
-- none
-
 #### Issues
-
-Is is unclear, where the post-request should go. It´s looking like the target system is the external system, but I wonder if it should be a post request then....
 
 #### Comments
 
 #### POST-Request
+
 ```http
-POST /forwarder/**???**
+GET /forwarder-name?topic=https://onerecord.iata.org/cargo/Piece HTTP/1.1
+Host: 1r.forwarder-name.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+```
+
+#### Expected Response
+```http
+200 OK
+Contept-Type: application/ld+json
+
+{
+  "@type": "api:Subscription",
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/",
+    "publisher": "https://1r.portal.com/shipper-name",
+    "subscriber": "https://1r.forwarder-name.com"
+  },
+  "api:Subscription#contentTypes": " application/ld+json ",
+  "api:Subscription#cacheFor": "86400",
+  "api:Subscription#callbackUrl": "subscriber/callback",
+  "api:Subscription#errors": [],
+  "api:Subscription#myCompanyIdentifier": "subscriber",
+  "api:Subscription#secret": "C89583BA9B1FEEAB25F715A3BA2F3",
+  "api:Subscription#sendLogisticsObjectBody": true,
+  "api:Subscription#subscribeToStatusUpdates": true,
+  "api:Subscription#subscribedTo": "publisher",
+  "api:Subscription#topic": "cargo:Piece"
+}
+```
+
+### Step 2.2 Shipper sends notification about the ceration of the Piece to Forwarder's callback endpoint
+#### Todos
+
+#### Issues
+
+#### Comments
+
+- No authorization, verification etc. considered
+
+#### POST-Request
+```http
+POST /callback
 Host: 1r.forwarder-name.com 
-Authorization: (Bearer Token)
 Accept: application/ld+json
 Content-Type: application/ld+json
 
 {
   "@context": {
-      "@vocab": "http://onerecord.iata.org/"
+    "cargo": "https://onerecord.iata.org/cargo/"
   },
   "@type": "Notification",
   "eventType": "OBJECT_CREATED",
-  "topic": "http://onerecord.iata.org/Piece",
-  "logisticsObjectRef": "/shipper-name/piece/8dc"
+  "topic": "cargo:Piece",
+  "logisticsObjectRef": "https://1r.portal.com/shipper-name/Piece_8dc"
 }
 ```
 #### Expected Response
 ```http
 204 Notification received successfully
+Content-Type: application/ld+json
 ```
+
 
 ## UseCase 2: Forwarder subscribes on Shipper´s piece
 

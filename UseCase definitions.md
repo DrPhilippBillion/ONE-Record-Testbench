@@ -140,9 +140,10 @@ Content-Type: application/ld+json
 
 {
   "@context": {
-    "cargo": "https://onerecord.iata.org/cargo/"
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
   },
-  "@type": "Notification",
+  "@type": "api:Notification",
   "eventType": "OBJECT_CREATED",
   "topic": "cargo:Piece",
   "logisticsObjectRef": "https://1r.portal.com/shipper-name/Piece_8dc"
@@ -163,17 +164,20 @@ Content-Type: application/ld+json
 
 #### Issues
 
+- A specification of the usage of the API or endpoints is missing in the API specification?
+
 #### Comments
 
 #### POST-Request
 
 ```http
-POST 
+... 
 ```
 
 #### Expected Response
 
 ```http
+....
 ```
 
 

@@ -122,7 +122,7 @@ Contept-Type: application/ld+json
 }
 ```
 
-### Step 2.2 Shipper sends notification about the ceration of the Piece to Forwarder's callback endpoint
+### Step 2.2 Shipper sends notification about the creation of the Piece to Forwarder's callback endpoint
 #### Todos
 
 #### Issues

@@ -25,12 +25,16 @@ Accept: application/ld+json
 		"cargo:Value#value": 85
 	}	
 }
+```
 
 #### Expected Answer
+
+```http
 201 Created
 Location: https://1r.example.com/shipper/Piece_8dc
 Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/Piece
+```
 
 #### Comments
 - none -

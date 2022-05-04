@@ -6,19 +6,48 @@ This document is at early stage, please correct and comment extensively!
 
 # Setting
 
-This testbench 
+This testbench reflects a typical setting of Shipper, Forwarder and Carrier in the supply chain. But keep in mind, that it only roughly reflects the business process around these three stakeholders.
+
+Shipper's server address: 1r.portal.com/shipper-name (Shipper is hosted on a ONE Record portal)
+
+Forwarder's server address: 1r.forwarder-name.com (Forwarder is self-hosted)
+
+Carrier's address: 1r.carrier-name.com (Carrier is self-hosted)
+
+To simplify the setting, GHA and Carrier are combined in the Carrier role.
 
 # Assumptions
 
 # Requirements
 
+- here: Auxiliary script for the required linked objects for the test runs
 
-## UseCase 1: Shipper creates piece
-### Step 1: Shipper creates piece with grossWeight
+- TransportMovement by Carrier/GHA
+
+- ULD
+
+# UseCase definitions
+
+## UseCase 1: Shipper creates and publishes piece
+### Step 1: Shipper creates piece
+#### Scope
+
+Scope of this step is to evaluate the function to create data objects in ONE Record.
+
+#### Todos
+
+- Mandatory fields must be checked / added according to TTL
+- Write axiliary script to provide required linked objects
+
+#### Issues
+
+#### Comments
+
 #### POST-Request
+
 ```http
-POST /shipper/piece HTTP/1.1
-Host: 1r.example.com
+POST /shipper-name/piece HTTP/1.1
+Host: 1r.portal.com
 Content-Type: application/ld+json
 Accept: application/ld+json
 {
@@ -36,23 +65,36 @@ Accept: application/ld+json
 }
 ```
 
-#### Expected Answer
+#### Expected Response
 
 ```http
 201 Created
-Location: https://1r.example.com/shipper/Piece_8dc
+Location: https://1r.portal.com/shipper-name/Piece_8dc
 Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/Piece
 ```
 
-#### Comments
-- none -
 
 ### Step 2: Shipper publishes piece towards Forwarder
+
+#### Scope
+
+Scope of this step is to evaluate the publish function in ONE Record.
+
+#### Todos
+
+- none
+
+#### Issues
+
+Is is unclear, where the post-request should go. It´s looking like the target system is the external system, but I wonder if it should be a post request then....
+
+#### Comments
+
 #### POST-Request
 ```http
 POST /forwarder/**???**
-Host: 1r.platform.com 
+Host: 1r.forwarder-name.com 
 Authorization: (Bearer Token)
 Accept: application/ld+json
 Content-Type: application/ld+json
@@ -64,24 +106,40 @@ Content-Type: application/ld+json
   "@type": "Notification",
   "eventType": "OBJECT_CREATED",
   "topic": "http://onerecord.iata.org/Piece",
-  "logisticsObjectRef": "/shipper/piece/8dc"
+  "logisticsObjectRef": "/shipper-name/piece/8dc"
 }
 ```
-#### Expected Answer
+#### Expected Response
 ```http
 204 Notification received successfully
 ```
-#### Comments
 
-Is is unclear, where the post-request should go. It´s looking like the target system is the external system, but I wonder if it should be a post request then....
+## UseCase 2: Forwarder subscribes on Shipper´s piece
+
+#### Scope
+
+#### Todos
 
 #### Issues
 
+#### Comments
 
-## UseCase 2: Forwarder subscribes on Shipper´s piece
-***tbd***
-## UseCase 3: Forwarder creates and links shipment 
+#### POST-Request
+
+```http
+POST 
+```
+
+#### Expected Response
+
+```http
+```
+
+
+## UseCase 3: Forwarder creates and publishes shipment and links pieces
+
 ### Step 1: Forwarder creates shipment with totalGrossWeight
+
 **Input**
 ```http
 POST /forwarder/shipment HTTP/1.1
@@ -149,38 +207,81 @@ Content-Type: application/ld+json
    ]
 }
 ```
+
+
+
 **Expected Output**
 ```http
 204 The Update has been successful
 ```
+### Step 4: Forwarder publishes shipment to Carrier / GHA
+**Input**
+```http
+PATCH /shipper/piece/8dc HTTP/1.1
+Host: 1r.platform.com 
+Authorization: (Bearer Token)
+Content-Type: application/ld+json
+
+{
+  "revision":"1",
+  "description":"Backlink for Piece in Shipment",
+  "operations":[
+      "op":"add",
+      "p":"https://onerecord.iata.org/Piece#shipment"
+      "o":{
+        "value":"1r.platform.com/forwarder/shipment/a01",
+        "datatype":"https://www.w3.org/2001/XMLSchema#string"
+        }
+   ]
+}
+```
+
+
+
+**Expected Output**
+```http
+204 The Update has been successful
 ## UseCase 4: Forwarder performs access delegation of piece to GHA
+
+#### Scope
+
+#### Todos
+
+#### Issues
+
+#### Comments
+
+#### POST-Request
+
+```http
+POST 
+```
+
+#### Expected Response
+
+## UseCase 4: GHA/Carrier links piece with ULD
+
+## UseCase 5: GHA/Carrier links ULD with transportMovement 
+### Step 1: GHA/Carrier creates link to transportMovement in ULD
 ***tbd***
-## UseCase 5: Carrier creates and publishes transport movement
-### Step 1: Carrier creates transport movement with Origin and Destination
+### Step 2: GHA/Carrier sets CR to Carrier/transportMovement to include piece link
 ***tbd***
-### Step 2: Carrier publishes transport movement towards GHA and Forwarder
+### Step 3: GHA/Carrier confirms CR to transportMovement to include piece link
 ***tbd***
-## UseCase 6: GHA creates ULD with uPID and uldTypeCode
+## UseCase 6: GHA/Carrier perform CR to Shipper/piece to correct weight to 45 kg
 ***tbd***
-## UseCase 7: GHA links ULD with Carrier/transportMovement 
-### Step 1: GHA creates link to transportMovement in ULD
+Step 1: CR
+
+Step 2: Check on notification by FF
+## UseCase 7: Shipper executes CR
+
+## UseCase 8: Forwarder get notified on change
+
+## UseCase 9: Check audit trail of Piece by Carrier
+
+## UseCase 9: At DEP: GHA/Carrier triggers Memento incl. Piece, ULD, Shipment and flight
 ***tbd***
-### Step 2: GHA sets CR to Carrier/transportMovement to include piece link
-***tbd***
-### Step 3: Carrier confirms CR to transportMovement to include piece link
-***tbd***
-## UseCase 8: GHA switches assignment piece to shipment
-### Step 1: Forwarder creates "alternative" shipment with totalGrossweight of 14 kg
-***tbd***
-### Step 2: GHA sets CR to Shipper/piece for changing shipment
-***tbd***
-### Step 3: GHA sets CR to Forwarder/shipment for containedPieces
-***tbd***
-## UseCase 9: GHA sets CR to Shipper/piece to correct weight to 45 kg
-***tbd***
-## UseCase 10: At DEP: Carrier triggers Memento incl. Piece, ULD, Shipment and flight
-***tbd***
-## UseCases >=11: Check Audit Trail, Multi-Link environment, Security, Authentication, etc.
+## UseCases >=11: Multi-Link environment, Security, Authentication, etc.
 ***tbd***
 
 

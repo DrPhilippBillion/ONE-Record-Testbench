@@ -285,5 +285,5 @@ Step 2: Check on notification by FF
 ***tbd***
 
 
-![UseCases](/EmbeddedIllustrations/UseCases.png)
+![UseCases](/EmbeddedIllustrations/UseCases2.png)
         

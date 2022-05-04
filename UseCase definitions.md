@@ -22,6 +22,12 @@ To simplify the setting, GHA and Carrier are combined in the Carrier role.
 
 - here: Auxiliary script for the required linked objects for the test runs
 
+- TransportMovement by Carrier/GHA
+
+- ULD
+
+# UseCase definitions
+
 ## UseCase 1: Shipper creates and publishes piece
 ### Step 1: Shipper creates piece
 #### Scope
@@ -130,8 +136,10 @@ POST
 ```
 
 
-## UseCase 3: Forwarder creates and links shipment 
+## UseCase 3: Forwarder creates and publishes shipment and links pieces
+
 ### Step 1: Forwarder creates shipment with totalGrossWeight
+
 **Input**
 ```http
 POST /forwarder/shipment HTTP/1.1
@@ -251,54 +259,29 @@ POST
 
 #### Expected Response
 
-```http
-```
+## UseCase 4: GHA/Carrier links piece with ULD
 
-## UseCase 5: Carrier creates and publishes transport movement
-### Step 1: Carrier creates transport movement with Origin and Destination
-
-#### Scope
-
-#### Todos
-
-#### Issues
-
-#### Comments
-
-#### POST-Request
-
-```http
-POST 
-```
-
-#### Expected Response
-
-```http
-```
-
-### Step 2: Carrier publishes transport movement towards GHA and Forwarder
-
-## UseCase 6: GHA creates ULD with uPID and uldTypeCode
+## UseCase 5: GHA/Carrier links ULD with transportMovement 
+### Step 1: GHA/Carrier creates link to transportMovement in ULD
 ***tbd***
-## UseCase 7: GHA links ULD with Carrier/transportMovement 
-### Step 1: GHA creates link to transportMovement in ULD
+### Step 2: GHA/Carrier sets CR to Carrier/transportMovement to include piece link
 ***tbd***
-### Step 2: GHA sets CR to Carrier/transportMovement to include piece link
+### Step 3: GHA/Carrier confirms CR to transportMovement to include piece link
 ***tbd***
-### Step 3: Carrier confirms CR to transportMovement to include piece link
+## UseCase 6: GHA/Carrier perform CR to Shipper/piece to correct weight to 45 kg
 ***tbd***
-## UseCase 8: GHA switches assignment piece to shipment
-### Step 1: Forwarder creates "alternative" shipment with totalGrossweight of 14 kg
+Step 1: CR
+
+Step 2: Check on notification by FF
+## UseCase 7: Shipper executes CR
+
+## UseCase 8: Forwarder get notified on change
+
+## UseCase 9: Check audit trail of Piece by Carrier
+
+## UseCase 9: At DEP: GHA/Carrier triggers Memento incl. Piece, ULD, Shipment and flight
 ***tbd***
-### Step 2: GHA sets CR to Shipper/piece for changing shipment
-***tbd***
-### Step 3: GHA sets CR to Forwarder/shipment for containedPieces
-***tbd***
-## UseCase 9: GHA sets CR to Shipper/piece to correct weight to 45 kg
-***tbd***
-## UseCase 10: At DEP: Carrier triggers Memento incl. Piece, ULD, Shipment and flight
-***tbd***
-## UseCases >=11: Check Audit Trail, Multi-Link environment, Security, Authentication, etc.
+## UseCases >=11: Multi-Link environment, Security, Authentication, etc.
 ***tbd***
 
 

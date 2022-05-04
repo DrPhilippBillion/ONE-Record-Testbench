@@ -4,6 +4,15 @@ This document is at early stage, please correct and comment extensively!
 
 (for a UseCase overview, please refer to the image at the end of the document)
 
+# Setting
+
+This testbench 
+
+# Assumptions
+
+# Requirements
+
+
 ## UseCase 1: Shipper creates piece
 ### Step 1: Shipper creates piece with grossWeight
 #### POST-Request

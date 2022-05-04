@@ -187,26 +187,47 @@ Content-Type: application/ld+json
 
 **Input**
 ```http
-POST /forwarder/shipment HTTP/1.1
-Host: 1r.platform.com 
-Authorization: (Bearer Token)
+POST /shipment HTTP/1.1
+Host: 1r.forwarder-name.com 
 Accept: application/ld+json
 Content-Type: application/ld+json
 
 {
-  "totalGrossWeight":
-    {
-    "value": 12000,
-    "unit": "kg"
+  "@context": {
+    "cargo": "https://onerecord.iata.org/"
+  },
+  "@type": "cargo:Shipment",
+  "cargo:Shipment#totalGrossWeight": {
+    "@type": "cargo:Value",
+    "cargo:Value#unit": "kg",
+    "cargo:Value#value": 12000
+  },
+  "cargo:Shipment#waybillNumber": {
+    "@type": "cargo:Waybill",
+    "cargo:Waybill#carrierDeclarationPlace": {
+      "@type": "cargo:Location",
+      "cargo:Location#code": "FRA"
+    },
+    "cargo:Waybill#carrierDeclarationDate": "2022-04-05T21:32:52+02:00",
+    "cargo:Waybill#carrierDeclarationSignature": "Max Mustermann"
+  },
+  "cargo:Shipment#volumetricWeight": {
+    "@type": "cargo:VolumetricWeight",
+    "cargo:VolumetricWeight#conversionFactor": {
+      "@type": "cargo:Value",
+      "cargo:Value#value": 167
     }
+  }
 }
 ```
 **Expected Output**
 ```http
-HTTP/1.1 201 Created
-Date: ...
-Location: http://1r.platform.com/forwarder/shipment/a01
+201 Created
+Location: https://1r.forwarder-name.com/Shipment_A01
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/Shipment
 ```
+
 
 **Comment**
 

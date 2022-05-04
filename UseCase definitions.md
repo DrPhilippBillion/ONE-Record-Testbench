@@ -6,7 +6,11 @@ This document is at early stage, please correct and comment extensively!
 
 # Setting
 
-This testbench 
+This testbench reflects a typical setting of Shipper, Forwarder and Carrier in the supply chain. But keep in mind, that it only roughly reflects the business process around these three stakeholders.
+
+Shipper's server address: 1r.portal.com/shipper-name (Shipper is hosted on a ONE Record portal)
+Forwarder's server address: 1r.forwarder-name.com (Forwarder is self-hosted)
+Carrier's address: 1r.carrier-name.com
 
 # Assumptions
 
@@ -15,6 +19,9 @@ This testbench
 
 ## UseCase 1: Shipper creates piece
 ### Step 1: Shipper creates piece with grossWeight
+#### Scope
+Scope of this step is to evaluate the function to create data objects in ONE Record.
+
 #### POST-Request
 ```http
 POST /shipper/piece HTTP/1.1

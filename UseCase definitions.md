@@ -279,7 +279,7 @@ Step 2: Check on notification by FF
 
 ## UseCase 9: Check audit trail of Piece by Carrier
 
-## UseCase 9: At DEP: GHA/Carrier triggers Memento incl. Piece, ULD, Shipment and flight
+## UseCase 10: At DEP: GHA/Carrier triggers Memento incl. Piece, ULD, Shipment and flight
 ***tbd***
 ## UseCases >=11: Multi-Link environment, Security, Authentication, etc.
 ***tbd***

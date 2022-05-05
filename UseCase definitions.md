@@ -2,7 +2,7 @@
 
 This document is at early stage, please correct and comment extensively!
 
-(for a UseCase overview, please refer to the image at the end of the document)
+![UseCases](/EmbeddedIllustrations/UseCases2.png)
 
 # Setting
 
@@ -349,7 +349,3 @@ Step 2: Check on notification by FF
 ***tbd***
 ## UseCases >=11: Multi-Link environment, Security, Authentication, etc.
 ***tbd***
-
-
-![UseCases](/EmbeddedIllustrations/UseCases2.png)
-        

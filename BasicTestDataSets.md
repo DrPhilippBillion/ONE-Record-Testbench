@@ -16,7 +16,6 @@ GHA's address: 1r.swissport.com (GHA is self-hosted)
 
 ### Apple
 
-#### Company
 *POST*
 
 ```http
@@ -43,7 +42,7 @@ Location: https://1r.portal.com/apple
 Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/company
 ```
-#### Apple Branch
+#### Apple Headquarter
 ```http
 POST /apple/headquarter HTTP/1.1
 Host: 1r.portal.com
@@ -94,7 +93,7 @@ Location: https://1r.portal.com/apple
 Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/company
 ```
-#### Apple Branch Location 
+#### Apple Headquarter Location 
 
 ```http
 POST /apple/headquarter/ HTTP/1.1
@@ -146,7 +145,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/company
 ```
 
-#### Apple Headquarter Address
+#### Apple Headquarter Location Address
 
 ```http
 POST /apple/headquarter/location HTTP/1.1
@@ -210,7 +209,7 @@ This creates a complete example Shipment record with records of the shipper, the
 
 ### Creation of Shipper's objects
 
-#### Product
+#### iPhone 11 Product
 
 *POST-Request*
 
@@ -244,7 +243,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/product
 ```
 
-#### Item 1
+#### Item 1: iPhone 11 with IMEI4223111
 
 *POST-Request*
 
@@ -304,7 +303,7 @@ LO-type: https://onerecord.iata.org/item
 ```
 
 
-#### Item 2
+#### Item 2: iPhone 11 with IMEI4223112
 
 *POST-Request*
 
@@ -363,7 +362,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/item
 ```
 
-#### Piece
+#### Piece 8f5xxd by Apple with iPhones
 
 *POST-Request*
 

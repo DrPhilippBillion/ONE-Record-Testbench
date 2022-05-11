@@ -2,6 +2,11 @@
 
 This file serves to provide a basic data set for using ONE Record.
 
+## Open Issues
+
+Creation of linked objects via embedding LOs
+
+
 ## Roles and Addresses
 
 Shipper's server address: 1r.portal.com/apple (Shipper is hosted on a ONE Record portal)
@@ -30,7 +35,6 @@ Accept: application/ld+json
   },
   "@type": "cargo:Company",
   "cargo:company#companyName": "Apple Inc.",
-  }
 }
 ```
 *Expected Response*
@@ -55,7 +59,6 @@ Accept: application/ld+json
   "@type": "cargo:CompanyBranch",
   "cargo:companyBranch#company": "1r.portal.com/apple",
   "cargo:companyBranch#branchName": "Apple Headquarter"
-  }
 }
 ```
 *Expected Response*
@@ -79,8 +82,7 @@ Accept: application/ld+json
     "api": "https://onerecord.iata.org/api/"
   },
   "@type": "cargo:Company",
-  "cargo:company#branch": "1r.portal.com/apple/headquarter",
-  }
+  "cargo:company#branch": "1r.portal.com/apple/headquarter"
 }
 ```
 
@@ -105,7 +107,6 @@ Accept: application/ld+json
     "api": "https://onerecord.iata.org/api/"
   },
   "@type": "cargo:location"
-  }
 }
 ```
 *Expected Response*
@@ -131,7 +132,6 @@ Accept: application/ld+json
   },
   "@type": "cargo:CompanyBranch",
   "cargo:companyBranch#location": "https://1r.portal.com/apple/headquarter/location"
-  }
 }
 ```
 
@@ -162,7 +162,6 @@ Accept: application/ld+json
    "cargo:address#cityName": "Cupertino",
    "cargo:address#regionCode": "CA",
    "cargo:address#country": "USA"
-  }
 }
 ```
 *Expected Response*
@@ -189,7 +188,6 @@ Accept: application/ld+json
   },
   "@type": "cargo:location",
   "cargo:location#address": "https://1r.portal.com/apple/headquarter/location"
-  }
 }
 ```
 
@@ -229,7 +227,6 @@ Accept: application/ld+json
   "cargo:Product#hsType": "EU Harmonized System Code",
   "cargo:Product#hsCommodityName": "ELECTRICAL MACHINERY",
   "cargo:Product#hsCommodityDescription": "Telephone sets"
-  }
 }
 ```
 
@@ -260,8 +257,7 @@ Accept: application/ld+json
   "cargo:Item#otherIdentifier": "IMEI4223111",
   "cargo:Item#batchNumber": "2022/08-55-n5",
   "cargo:Item#productionCountry": "China",
-  "cargo:Item#product": "https://1r.portal.com/apple/products/iphone11_rev1233",
-  }
+  "cargo:Item#product": "https://1r.portal.com/apple/products/iphone11_rev1233"
 }
 ```
 
@@ -287,8 +283,7 @@ Accept: application/ld+json
     "api": "https://onerecord.iata.org/api/"
   },
   "@type": "cargo:product",
-  "cargo:Item#isInItems": "https://1r.portal.com/apple/items/IMEI4223111",
-  }
+  "cargo:Item#isInItems": "https://1r.portal.com/apple/items/IMEI4223111"
 }
 ```
 
@@ -320,8 +315,7 @@ Accept: application/ld+json
   "cargo:Item#otherIdentifier": "IMEI4223112",
   "cargo:Item#batchNumber": "2022/08-55-n5",
   "cargo:Item#productionCountry": "China",
-  "cargo:Item#product": "https://1r.portal.com/apple/products/iphone11_rev1233",
-  }
+  "cargo:Item#product": "https://1r.portal.com/apple/products/iphone11_rev1233"
 }
 ```
 
@@ -348,7 +342,6 @@ Accept: application/ld+json
   },
   "@type": "cargo:product",
   "cargo:Item#isInItems": "https://1r.portal.com/apple/items/IMEI4223112",
-  }
 }
 ```
 
@@ -383,12 +376,11 @@ Accept: application/ld+json
   },
   "cargo:containedItems": "https://1r.portal.com/apple/items/IMEI4223112",
   "cargo:containedItems": "https://1r.portal.com/apple/items/IMEI4223111",
-  "cargo:shipper": "TODO",
+  "cargo:shipper": "https://1r.portal.com/apple",
   "cargo:goodsDescription": "320 iPhones",
   "cargo:declaredValueForCustoms": {
       "cargo:value": "6895",
       "cargo:unit": "USD"
-  }
 }
 ```
 

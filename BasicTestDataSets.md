@@ -302,7 +302,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/item
 ```
 
-Backlink Item in Product
+*Backlink Item in Product*
 
 Request
 
@@ -432,6 +432,6 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/piece
 ```
 
-*POST: Backlink in item**
+*Backlink piece in item**
 
 ***Issue: no backlink in item to piece defined***

@@ -76,6 +76,8 @@ LO-type: https://onerecord.iata.org/companyBranch
 ```
 *Link company and branch*
 
+Request
+
 ```http
 POST /apple HTTP/1.1
 Host: 1r.portal.com
@@ -341,10 +343,12 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/item
 ```
 
-*POST: Backlink in product**
+*Backlink Item in product*
+
+Request
 
 ```http
-POST /apple/prodcut HTTP/1.1
+POST /apple/product HTTP/1.1
 Host: 1r.portal.com
 Content-Type: application/ld+json
 Accept: application/ld+json
@@ -358,7 +362,7 @@ Accept: application/ld+json
 }
 ```
 
-*Expected Response*
+Response
 
 ```http
 201 Created

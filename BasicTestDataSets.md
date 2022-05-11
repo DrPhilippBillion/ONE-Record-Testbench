@@ -21,7 +21,7 @@ GHA's address: 1r.swissport.com (GHA is self-hosted)
 
 ### Apple
 
-*POST*
+Request
 
 ```http
 POST /apple HTTP/1.1
@@ -37,7 +37,8 @@ Accept: application/ld+json
   "cargo:company#companyName": "Apple Inc.",
 }
 ```
-*Expected Response*
+
+Response
 
 ```http
 201 Created
@@ -46,6 +47,9 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/company
 ```
 #### Apple Headquarter
+
+Request 
+
 ```http
 POST /apple/headquarter HTTP/1.1
 Host: 1r.portal.com
@@ -61,7 +65,8 @@ Accept: application/ld+json
   "cargo:companyBranch#branchName": "Apple Headquarter"
 }
 ```
-*Expected Response*
+
+Response
 
 ```http
 201 Created
@@ -86,7 +91,7 @@ Accept: application/ld+json
 }
 ```
 
-*Expected Response*
+Response
 
 ```http
 201 Created
@@ -95,6 +100,8 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/company
 ```
 #### Apple Headquarter Location 
+
+Request
 
 ```http
 POST /apple/headquarter/ HTTP/1.1
@@ -109,7 +116,8 @@ Accept: application/ld+json
   "@type": "cargo:location"
 }
 ```
-*Expected Response*
+
+Response
 
 ```http
 201 Created
@@ -119,6 +127,8 @@ LO-type: https://onerecord.iata.org/company
 ```
 
 *Link branch and location*
+
+Request
 
 ```http
 POST /apple/headquarter HTTP/1.1
@@ -135,7 +145,7 @@ Accept: application/ld+json
 }
 ```
 
-*Expected Response*
+Response
 
 ```http
 201 Created
@@ -145,6 +155,8 @@ LO-type: https://onerecord.iata.org/company
 ```
 
 #### Apple Headquarter Location Address
+
+Request
 
 ```http
 POST /apple/headquarter/location HTTP/1.1
@@ -164,7 +176,7 @@ Accept: application/ld+json
    "cargo:address#country": "USA"
 }
 ```
-*Expected Response*
+Response
 
 ```http
 201 Created
@@ -173,8 +185,9 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/address
 ```
 
-
 *Link location and address*
+
+Request
 
 ```http
 POST /apple/headquarter/location HTTP/1.1
@@ -191,7 +204,7 @@ Accept: application/ld+json
 }
 ```
 
-*Expected Response*
+Response
 
 ```http
 201 Created
@@ -208,7 +221,7 @@ This creates a complete example Shipment record with records of the shipper, the
 
 #### iPhone 11 Product
 
-*POST-Request*
+Request
 
 ```http
 POST /shipper-name/product HTTP/1.1
@@ -230,7 +243,7 @@ Accept: application/ld+json
 }
 ```
 
-*Expected Response*
+Response
 
 ```http
 201 Created
@@ -241,7 +254,7 @@ LO-type: https://onerecord.iata.org/product
 
 #### Item 1: iPhone 11 with IMEI4223111
 
-*POST-Request*
+Request
 
 ```http
 POST /apple/item HTTP/1.1
@@ -261,7 +274,7 @@ Accept: application/ld+json
 }
 ```
 
-*Expected Response*
+Response
 
 ```http
 201 Created
@@ -270,7 +283,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/item
 ```
 
-*POST: Backlink in product**
+Request
 
 ```http
 POST /apple/prodcut HTTP/1.1
@@ -287,7 +300,7 @@ Accept: application/ld+json
 }
 ```
 
-*Expected Response*
+Response
 
 ```http
 201 Created
@@ -299,7 +312,7 @@ LO-type: https://onerecord.iata.org/item
 
 #### Item 2: iPhone 11 with IMEI4223112
 
-*POST-Request*
+Request
 
 ```http
 POST /apple/item HTTP/1.1
@@ -319,7 +332,7 @@ Accept: application/ld+json
 }
 ```
 
-*Expected Response*
+Response
 
 ```http
 201 Created
@@ -356,7 +369,7 @@ LO-type: https://onerecord.iata.org/item
 
 #### Piece 8f5xxd by Apple with iPhones
 
-*POST-Request*
+Request
 
 ```http
 POST /apple/piece HTTP/1.1
@@ -384,7 +397,7 @@ Accept: application/ld+json
 }
 ```
 
-*Expected Response*
+Response
 
 ```http
 201 Created

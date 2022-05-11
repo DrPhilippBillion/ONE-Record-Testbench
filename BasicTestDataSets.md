@@ -30,7 +30,6 @@ Accept: application/ld+json
   },
   "@type": "cargo:Company",
   "cargo:company#companyName": "Apple Inc.",
-  "cargo:company#companyBranch": "Apple Headquarter"
   }
 }
 ```

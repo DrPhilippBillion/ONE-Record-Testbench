@@ -105,6 +105,7 @@ Content-Type: application/ld+json
         }
    ]
 }
+```
 
 Response
 
@@ -161,6 +162,7 @@ Content-Type: application/ld+json
         }
    ]
 }
+```
 
 Response
 
@@ -190,6 +192,7 @@ Accept: application/ld+json
    "cargo:address#country": "USA"
 }
 ```
+
 Response
 
 ```http
@@ -221,15 +224,13 @@ Content-Type: application/ld+json
         }
    ]
 }
+```
 
 Response
 
 ```http
 204 The Update has been successful
 ```
-
-
-  "cargo:location#address": "https://1r.portal.com/apple/headquarter/location"
 
 ## Shipment Record
 
@@ -323,6 +324,7 @@ Content-Type: application/ld+json
         }
    ]
 }
+```
 
 Response
 

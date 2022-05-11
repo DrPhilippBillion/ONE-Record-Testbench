@@ -2,6 +2,14 @@
 
 This file serves to provide a basic data set for using ONE Record.
 
+## Comments and Assumptions
+
+Comment: Here we chose to go a top-down approach, creating first company, then companyBranch, then location, then addresse, then linking them by patching; a more efficient way would be to create bottom up (address first, company last), as this would not require any patch, and links can be included already at the time of creation. 
+
+Another way of doing it: embedding all objects in a single call, then making calls to find out the links, is disputed if possible and covered by the standard. This would then only require a single POST 
+
+
+
 ## Open Issues
 
 Creation of linked objects via embedding LOs
@@ -18,10 +26,6 @@ Carrier's address: 1r.lufthansa-cargo.com (Carrier is self-hosted)
 GHA's address: 1r.swissport.com (GHA is self-hosted)
 
 ## Companies
-
-Comment: Here we chose to go a top-down approach, creating first company, then companyBranch, then location, then addresse, then linking them by patching; a more efficient way would be to create bottom up (address first, company last), as this would not require any patch, and links can be included already at the time of creation. 
-
-Another way of doing it: embedding all objects in a single call, then making calls to find out the links, is disputed if possible and covered by the standard. This would then only require a single POST 
 
 ### Apple
 

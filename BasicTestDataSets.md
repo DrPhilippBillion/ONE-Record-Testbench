@@ -38,7 +38,7 @@ Content-Type: application/ld+json
 Accept: application/ld+json
 {
   "@context": {
-    "cargo": "https://onerecord.iata.org/",
+    "cargo": "https://onerecord.iata.org/cargo/",
     "api": "https://onerecord.iata.org/api/"
   },
   "@type": "cargo:Company",
@@ -66,7 +66,7 @@ Content-Type: application/ld+json
 Accept: application/ld+json
 {
   "@context": {
-    "cargo": "https://onerecord.iata.org/",
+    "cargo": "https://onerecord.iata.org/cargo/",
     "api": "https://onerecord.iata.org/api/"
   },
   "@type": "cargo:CompanyBranch",
@@ -124,7 +124,7 @@ Content-Type: application/ld+json
 Accept: application/ld+json
 {
   "@context": {
-    "cargo": "https://onerecord.iata.org/",
+    "cargo": "https://onerecord.iata.org/cargo/",
     "api": "https://onerecord.iata.org/api/"
   },
   "@type": "cargo:location"
@@ -181,7 +181,7 @@ Content-Type: application/ld+json
 Accept: application/ld+json
 {
   "@context": {
-    "cargo": "https://onerecord.iata.org/",
+    "cargo": "https://onerecord.iata.org/cargo/",
     "api": "https://onerecord.iata.org/api/"
   },
   "@type": "cargo:address",
@@ -249,7 +249,7 @@ Content-Type: application/ld+json
 Accept: application/ld+json
 {
   "@context": {
-    "cargo": "https://onerecord.iata.org/",
+    "cargo": "https://onerecord.iata.org/cargo/",
     "api": "https://onerecord.iata.org/api/"
   },
   "@type": "cargo:Product",
@@ -282,7 +282,7 @@ Content-Type: application/ld+json
 Accept: application/ld+json
 {
   "@context": {
-    "cargo": "https://onerecord.iata.org/",
+    "cargo": "https://onerecord.iata.org/cargo/",
     "api": "https://onerecord.iata.org/api/"
   },
   "@type": "cargo:item",
@@ -343,7 +343,7 @@ Content-Type: application/ld+json
 Accept: application/ld+json
 {
   "@context": {
-    "cargo": "https://onerecord.iata.org/",
+    "cargo": "https://onerecord.iata.org/cargo/",
     "api": "https://onerecord.iata.org/api/"
   },
   "@type": "cargo:item",
@@ -404,7 +404,7 @@ Content-Type: application/ld+json
 Accept: application/ld+json
 {
   "@context": {
-    "cargo": "https://onerecord.iata.org/",
+    "cargo": "https://onerecord.iata.org/cargo/",
     "api": "https://onerecord.iata.org/api/"
   },
   "@type": "cargo:piece",

@@ -19,7 +19,7 @@ Creation of linked objects via embedding LOs
 
 Shipper's server address: 1r.portal.com/apple (Shipper is hosted on a ONE Record portal)
 
-Forwarder's server address: 1r.schenker.com (Forwarder is self-hosted)
+Forwarder's server address: 1r.dbschenker.com (Forwarder is self-hosted)
 
 Carrier's address: 1r.lufthansa-cargo.com (Carrier is self-hosted)
 
@@ -324,7 +324,7 @@ Request
 
 ```http
 POST /headquarter/ HTTP/1.1
-Host: 1r.portal.com
+Host: 1r.dbschenker.com
 Content-Type: application/ld+json
 Accept: application/ld+json
 {
@@ -340,7 +340,7 @@ Response
 
 ```http
 201 Created
-Location: https://1r.Schenker.com/apple/headquarter/location
+Location: https://1r.dbschenker.com/apple/headquarter/location
 Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/company
 ```
@@ -435,6 +435,212 @@ Response
 ```http
 204 The Update has been successful
 ```
+
+
+### Lufthansa Cargo
+
+Request
+
+```http
+POST / HTTP/1.1
+Host: 1r.lufthansa-cargo.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:Company",
+  "cargo:company#companyName": "Lufthansa Cargo AG",
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.lufthansa-cargo.com/
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/company
+```
+
+#### Schenker Headquarter
+
+Request
+
+```http
+POST /headquarter HTTP/1.1
+Host: 1r.lufthansa-cargo.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:CompanyBranch",
+  "cargo:companyBranch#company": "1r.lufthansa-cargo.com",
+  "cargo:companyBranch#branchName": "Lufthansa Cargo Headquarter"
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.lufthansa-cargo.com/headquarter
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/companyBranch
+```
+*Link company and branch*
+
+Request
+
+```http
+PATCH / HTTP/1.1
+Host: 1r.lufthansa-cargo.com
+Authorization: (Bearer Token)
+Content-Type: application/ld+json
+
+{
+  "revision":"2",
+  "description":"Backlink for companyBranch in company",
+  "operations":[
+      "op":"add",
+      "p":"https://onerecord.iata.org/company#branch"
+      "o":{
+        "value":"https://1r.lufthansa-cargo.com/headquarter",
+        "datatype":"https://www.w3.org/2001/XMLSchema#string"
+        }
+   ]
+}
+```
+
+Response
+
+```http
+204 The Update has been successful
+```
+
+#### Lufthansa Cargo Headquarter Location
+
+Request
+
+```http
+POST /headquarter/ HTTP/1.1
+Host: 1r.lufthansa-cargo.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:location"
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.lufthansa-cargo.com/apple/headquarter/location
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/company
+```
+
+*Link branch and location*
+
+Request
+
+```http
+PATCH /headquarter HTTP/1.1
+Host: 1r.lufthansa-cargo.com
+Authorization: (Bearer Token)
+Content-Type: application/ld+json
+
+{
+  "revision":"2",
+  "description":"Backlink for location in companyBranch",
+  "operations":[
+      "op":"add",
+      "p":"https://onerecord.iata.org/companyBranch#location"
+      "o":{
+        "value":"https://1r.lufthansa-cargo.com/headquarter/location",
+        "datatype":"https://www.w3.org/2001/XMLSchema#string"
+        }
+   ]
+}
+```
+
+Response
+
+```http
+204 The Update has been successful
+```
+
+#### Schenker Headquarter Location Address
+
+Request
+
+```http
+POST /headquarter/location HTTP/1.1
+Host: 1r.lufthansa-cargo.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:address",
+   "cargo:address#street": "Frankfurt Airport, Gate 21, Building 322",
+   "cargo:address#postalCode": "60546",
+   "cargo:address#cityName": "Frankfurt am Main",
+   "cargo:address#country": "Germany"
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.lufthansa-cargo.com/headquarter/location/address
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/address
+```
+
+*Link location and address*
+
+Request
+
+```http
+PATCH /headquarter/location HTTP/1.1
+Host: 1r.lufthansa-cargo.com
+Authorization: (Bearer Token)
+Content-Type: application/ld+json
+
+{
+  "revision":"2",
+  "description":"Backlink for street in location",
+  "operations":[
+      "op":"add",
+      "p":"https://onerecord.iata.org/companyBranch/location#address"
+      "o":{
+        "value":"https://1r.lufthansa-cargo.com/headquarter/location/address",
+        "datatype":"https://www.w3.org/2001/XMLSchema#string"
+        }
+   ]
+}
+```
+
+Response
+
+```http
+204 The Update has been successful
+```
+
 
 ## Shipment Record
 

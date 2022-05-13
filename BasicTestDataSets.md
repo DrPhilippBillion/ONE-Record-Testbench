@@ -580,7 +580,7 @@ Response
 204 The Update has been successful
 ```
 
-#### Schenker Headquarter Location Address
+#### Lufthansa Cargo Headquarter Location Address
 
 Request
 
@@ -640,6 +640,70 @@ Response
 ```http
 204 The Update has been successful
 ```
+
+## General Locations
+
+### SFO Airport
+
+Request
+
+```http
+POST /locations/airports HTTP/1.1
+Host: 1r.dbschenker.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:location",
+  "cargo:location#locationName": "San Francisco Airport",
+  "cargo:location#locationType": "International Airport",
+  "cargo:location#locationCode": "SFO",
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.dbschenker.com/locations/airports/SFO
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/location
+```
+
+### LHR Airport
+
+Request
+
+```http
+POST /locations/airports HTTP/1.1
+Host: 1r.dbschenker.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:location",
+  "cargo:location#locationName": "London Heathrow Airport",
+  "cargo:location#locationType": "International Airport",
+  "cargo:location#locationCode": "LHR",
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.dbschenker.com/locations/airports/SFO
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/location
+```
+
+
 
 
 ## Shipment Record
@@ -845,3 +909,366 @@ LO-type: https://onerecord.iata.org/piece
 *Backlink piece in item**
 
 ***Issue: no backlink in item to piece defined***
+
+## Forwarders objects
+
+Here we go from bottom to top to avoid patching backlinks in
+
+
+### TransportMeansOperator: Drivers License
+
+*possible problem here: Person doesn´t exist yet, still path can be used or not? If not, backlinking neccessary*
+
+```http
+POST /persons/KurtMueller/license HTTP/1.1
+Host: 1r.dbschenker.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:externalReference",
+  "cargo:externalReference#documentName": "Führerschein",
+  "cargo:externalReference#documentId": "5523488",
+  "cargo:externalReference#documenttype": "Drivers License",
+  "cargo:externalReference#documentdate": "2020-10-26T00:00:00+01:00",
+  }
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.dbschenker.com/persons/KurtMueller/DriversLicense
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/externalReference
+```
+
+### TransportMeansOperator: Driver
+
+```http
+POST /persons/ HTTP/1.1
+Host: 1r.dbschenker.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:person",
+  "cargo:person#fistName": "Kurt",
+  "cargo:person#lastName": "Müller",
+  "cargo:person#employeeID": "85523d5",
+  "cargo:person#externalReference": "85523d5",
+  }
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.dbschenker.com/persons/KurtMueller
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/person
+```
+
+### TransportMeans: Truck
+
+```http
+POST /trucks/ HTTP/1.1
+Host: 1r.dbschenker.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:transportMeans",
+  "cargo:transportMeans#transportCompany": "1r.dbschenker.com",
+  "cargo:transportMeans#vehicleType": "Truck"
+  "cargo:transportMeans#vehicleRegistration": "DUB 99 GL"
+  }
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.dbschenker.com/trucks/DUB99GL
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/transportMeans
+```
+### transportMovement AppleHQ to SFO
+
+```http
+POST /transportMovement/ HTTP/1.1
+Host: 1r.dbschenker.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:TransportMovement",
+  "cargo:transportMovement#movementType": "actual",
+  "cargo:transportMovement#departureLocation": "https://1r.portal.com/apple/headquarter/location",
+  "cargo:transportMovement#arrivalLocation": "https://1r.dbschenker.com/locations/airports/SFO",
+    "cargo:transportMovement#TransportMeans": "https://1r.dbschenker.com/trucks/DUB99GL",
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.dbschenker.com/transportMovement/AppleHQ-SFO
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/transportMovement
+```
+
+### HandlingInstructions
+
+```http
+POST /HandlingInstructions/ HTTP/1.1
+Host: 1r.dbschenker.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:handlingInstructions",
+  "cargo:handlingInstructions#serviceType": "SSR",
+  "cargo:handlingInstructions#serviceDescription": "Always store below 0 degrees celsius",
+
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.dbschenker.com/handlingInstructions/frozen
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/handlingInstructions
+```
+
+```http
+POST /HandlingInstructions/ HTTP/1.1
+Host: 1r.dbschenker.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:handlingInstructions",
+  "cargo:handlingInstructions#serviceType": "SPH",
+  "cargo:handlingInstructions#serviceTypeCode": "HEA",
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.dbschenker.com/handlingInstructions/HEA
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/handlingInstructions
+```
+
+#### Piece 2255468 by Schenker
+
+Request
+
+```http
+POST /piece HTTP/1.1
+Host: 1r.dbschenker.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:piece",
+  "cargo:Piece#uPID": "2255468",
+  "cargo:piece#containedPieces": "https://1r.portal.com/apple/piece/8f5xxd",
+  "cargo:piece#shipper": "https://1r.dbschenker.com",
+  "cargo:piece#handlingInstructions": "https://1r.dbschenker.com/handlingInstructions/frozen",
+  "cargo:piece#handlingInstructions": "https://1r.dbschenker.com/handlingInstructions/HEA",  
+  "cargo:piece#transportMovement": "https://1r.dbschenker.com/transportMovement/AppleHQ-SFO
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.dbschenker.com/piece/2255468
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/piece
+```
+
+
+#### Shipment INT98221 by Schenker
+
+Request
+
+```http
+POST /shipments HTTP/1.1
+Host: 1r.dbschenker.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:shipment",
+  "cargo:shipment#containedPieces": "https://1r.dbschenker.com/piece/2255468",
+  "cargo:shipment#totalGrossWeight": {
+      "cargo:value": "1300",
+      "cargo:unit": "kg"
+  }
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.dbschenker.com/shipment/2255468
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/shipment
+```
+
+#### BookingSegment SFO-LHR by Schenker
+
+Request
+
+```http
+POST /bookingSegment HTTP/1.1
+Host: 1r.dbschenker.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:BookingSegment",
+  "cargo:BookingSegment#departureLocation": "https://1r.dbschenker.com/locations/airports/SFO",
+  "cargo:BookingSegment#arrivalLocation": "https://1r.dbschenker.com/locations/airports/LHR"
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.dbschenker.com/bookingSegment/SFO-LHR
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/shipment
+```
+
+#### Parties for Booking
+
+Request
+
+```http
+POST / HTTP/1.1
+Host: 1r.dbschenker.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:party",
+  "cargo:party#partyDetails": "https://1r.dbschenker.com/",
+  "cargo:party#partyRole": "Freight Forwarer",
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.dbschenker.com/dbSchenkerAsForwarder
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/party
+```
+
+Request
+
+```http
+POST /parties/ContractualShippers HTTP/1.1
+Host: 1r.dbschenker.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:party",
+  "cargo:party#partyDetails": "https://1r.portal.com/apple/",
+  "cargo:party#partyRole": "Shipper",
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.dbschenker.com/ContractualShippers/Apple
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/party
+```
+
+
+
+
+#### BookingOptionRequest SFO-LHR by Schenker
+
+Request
+
+```http
+POST /bookingOptionRequest HTTP/1.1
+Host: 1r.dbschenker.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:BookingOptionRequest",
+  "cargo:BookingOptionRequest#bookingSegment": "https://1r.dbschenker.com/bookingSegment/SFO-LHR",
+  "cargo:BookingOptionRequest#requestType": "booking",
+  "cargo:BookingOptionRequest#shipmentSecurityStatus": "SPX"  
+  "cargo:BookingOptionRequest#parties":
+  {
+    "https://1r.dbschenker.com/ContractualShippers/Apple",
+    "https://1r.dbschenker.com/dbSchenkerAsForwarder"
+  }
+
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.dbschenker.com/bookingOptionRequest/22334
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/bookingOptionRequest
+```

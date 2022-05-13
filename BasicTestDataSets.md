@@ -465,7 +465,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/company
 ```
 
-#### Schenker Headquarter
+#### Lufthansa Cargo Headquarter
 
 Request
 
@@ -710,7 +710,7 @@ LO-type: https://onerecord.iata.org/location
 
 This creates a complete example Shipment record with records of the shipper, the forwarder, and the carrier.
 
-### Creation of Shipper's objects
+### Shipper's objects
 
 #### iPhone 11 Product
 
@@ -946,7 +946,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/externalReference
 ```
 
-### TransportMeansOperator: Driver
+### TransportMeansOperator: Truckdriver
 
 ```http
 POST /persons/ HTTP/1.1
@@ -1084,7 +1084,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/handlingInstructions
 ```
 
-#### Piece 2255468 by Schenker
+### Piece 2255468 by Schenker
 
 Request
 
@@ -1117,8 +1117,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/piece
 ```
 
-
-#### Shipment INT98221 by Schenker
+### Shipment INT98221 by Schenker
 
 Request
 
@@ -1150,7 +1149,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/shipment
 ```
 
-#### BookingSegment SFO-LHR by Schenker
+### BookingSegment SFO-LHR by Schenker
 
 Request
 
@@ -1179,7 +1178,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/shipment
 ```
 
-#### Parties for Booking
+### Parties for Booking
 
 Request
 
@@ -1235,10 +1234,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/party
 ```
 
-
-
-
-#### BookingOptionRequest SFO-LHR by Schenker
+### BookingOptionRequest SFO-LHR by Schenker
 
 Request
 

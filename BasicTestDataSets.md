@@ -643,7 +643,7 @@ Response
 
 ## General Locations
 
-### SFO Airport
+### SFO Airport at Schenker
 
 Request
 
@@ -673,7 +673,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/location
 ```
 
-### LHR Airport
+### LHR Airport at Schenker
 
 Request
 
@@ -702,8 +702,6 @@ Location: https://1r.dbschenker.com/locations/airports/SFO
 Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/location
 ```
-
-
 
 
 ## Shipment Record
@@ -915,7 +913,7 @@ LO-type: https://onerecord.iata.org/piece
 Here we go from bottom to top to avoid patching backlinks in
 
 
-### TransportMeansOperator: Drivers License
+### TransportMeansOperator: Drivers License of Driver for Schenker's truck
 
 *possible problem here: Person doesn´t exist yet, still path can be used or not? If not, backlinking neccessary*
 
@@ -946,7 +944,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/externalReference
 ```
 
-### TransportMeansOperator: Truckdriver
+### TransportMeansOperator: Truckdriver details
 
 ```http
 POST /persons/ HTTP/1.1
@@ -975,7 +973,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/person
 ```
 
-### TransportMeans: Truck
+### TransportMeans: Truck for the first leg
 
 ```http
 POST /trucks/ HTTP/1.1
@@ -1031,7 +1029,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/transportMovement
 ```
 
-### HandlingInstructions
+### HandlingInstructions 
 
 ```http
 POST /HandlingInstructions/ HTTP/1.1
@@ -1084,7 +1082,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/handlingInstructions
 ```
 
-### Piece 2255468 by Schenker
+### Piece 2255468 by Schenker including Apple's pieces
 
 Request
 
@@ -1117,7 +1115,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/piece
 ```
 
-### Shipment INT98221 by Schenker
+### Shipment INT98221 by Schenker including all pieces
 
 Request
 
@@ -1149,7 +1147,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/shipment
 ```
 
-### BookingSegment SFO-LHR by Schenker
+### BookingSegment SFO-LHR by Schenker for MAWB booking at Carrier
 
 Request
 
@@ -1178,7 +1176,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/shipment
 ```
 
-### Parties for Booking
+### Parties for MAWB Booking
 
 Request
 
@@ -1234,7 +1232,7 @@ Content-Type: application/ld+json
 LO-type: https://onerecord.iata.org/party
 ```
 
-### BookingOptionRequest SFO-LHR by Schenker
+### BookingOptionRequest SFO-LHR by Schenker for air leg
 
 Request
 

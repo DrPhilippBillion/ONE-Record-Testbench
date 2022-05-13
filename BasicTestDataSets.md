@@ -4,9 +4,9 @@ This file serves to provide a basic data set for using ONE Record.
 
 ## Comments and Assumptions
 
-Comment: Here we chose to go a top-down approach, creating first company, then companyBranch, then location, then addresse, then linking them by patching; a more efficient way would be to create bottom up (address first, company last), as this would not require any patch, and links can be included already at the time of creation. 
+Comment: Here we chose to go a top-down approach, creating first company, then companyBranch, then location, then addresse, then linking them by patching; a more efficient way would be to create bottom up (address first, company last), as this would not require any patch, and links can be included already at the time of creation.
 
-Another way of doing it: embedding all objects in a single call, then making calls to find out the links, is disputed if possible and covered by the standard. This would then only require a single POST 
+Another way of doing it: embedding all objects in a single call, then making calls to find out the links, is disputed if possible and covered by the standard. This would then only require a single POST
 
 
 
@@ -57,7 +57,7 @@ LO-type: https://onerecord.iata.org/company
 
 #### Apple Headquarter
 
-Request 
+Request
 
 ```http
 POST /apple/headquarter HTTP/1.1
@@ -89,7 +89,7 @@ Request
 
 ```http
 PATCH /apple/ HTTP/1.1
-Host: 1r.platform.com 
+Host: 1r.platform.com
 Authorization: (Bearer Token)
 Content-Type: application/ld+json
 
@@ -113,7 +113,7 @@ Response
 204 The Update has been successful
 ```
 
-#### Apple Headquarter Location 
+#### Apple Headquarter Location
 
 Request
 
@@ -146,7 +146,7 @@ Request
 
 ```http
 PATCH /apple/headquarter HTTP/1.1
-Host: 1r.platform.com 
+Host: 1r.platform.com
 Authorization: (Bearer Token)
 Content-Type: application/ld+json
 
@@ -208,7 +208,7 @@ Request
 
 ```http
 PATCH /apple/headquarter/location HTTP/1.1
-Host: 1r.platform.com 
+Host: 1r.platform.com
 Authorization: (Bearer Token)
 Content-Type: application/ld+json
 
@@ -220,6 +220,210 @@ Content-Type: application/ld+json
       "p":"https://onerecord.iata.org/companyBranch/location#address"
       "o":{
         "value":"https://1r.portal.com/apple/headquarter/location/address",
+        "datatype":"https://www.w3.org/2001/XMLSchema#string"
+        }
+   ]
+}
+```
+
+Response
+
+```http
+204 The Update has been successful
+```
+
+### Schenker
+
+Request
+
+```http
+POST / HTTP/1.1
+Host: 1r.dbschenker.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:Company",
+  "cargo:company#companyName": "Schenker Deutschland AG",
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.dbschenker.com/
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/company
+```
+
+#### Schenker Headquarter
+
+Request
+
+```http
+POST /headquarter HTTP/1.1
+Host: 1r.dbschenker.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:CompanyBranch",
+  "cargo:companyBranch#company": "1r.dbschenker.com",
+  "cargo:companyBranch#branchName": "DB Schenker Headquarter"
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.dbschenker.com/headquarter
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/companyBranch
+```
+*Link company and branch*
+
+Request
+
+```http
+PATCH / HTTP/1.1
+Host: 1r.dbschenker.com
+Authorization: (Bearer Token)
+Content-Type: application/ld+json
+
+{
+  "revision":"2",
+  "description":"Backlink for companyBranch in company",
+  "operations":[
+      "op":"add",
+      "p":"https://onerecord.iata.org/company#branch"
+      "o":{
+        "value":"https://1r.dbschenker.com/headquarter",
+        "datatype":"https://www.w3.org/2001/XMLSchema#string"
+        }
+   ]
+}
+```
+
+Response
+
+```http
+204 The Update has been successful
+```
+
+#### Schenker Headquarter Location
+
+Request
+
+```http
+POST /headquarter/ HTTP/1.1
+Host: 1r.portal.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:location"
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.Schenker.com/apple/headquarter/location
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/company
+```
+
+*Link branch and location*
+
+Request
+
+```http
+PATCH /headquarter HTTP/1.1
+Host: 1r.dbschenker.com
+Authorization: (Bearer Token)
+Content-Type: application/ld+json
+
+{
+  "revision":"2",
+  "description":"Backlink for location in companyBranch",
+  "operations":[
+      "op":"add",
+      "p":"https://onerecord.iata.org/companyBranch#location"
+      "o":{
+        "value":"https://1r.dbschenker.com/headquarter/location",
+        "datatype":"https://www.w3.org/2001/XMLSchema#string"
+        }
+   ]
+}
+```
+
+Response
+
+```http
+204 The Update has been successful
+```
+
+#### Schenker Headquarter Location Address
+
+Request
+
+```http
+POST /headquarter/location HTTP/1.1
+Host: 1r.dbschenker.com
+Content-Type: application/ld+json
+Accept: application/ld+json
+{
+  "@context": {
+    "cargo": "https://onerecord.iata.org/cargo/",
+    "api": "https://onerecord.iata.org/api/"
+  },
+  "@type": "cargo:address",
+   "cargo:address#street": "Lyoner Strasse 15",
+   "cargo:address#postalCode": "60528",
+   "cargo:address#cityName": "Frankfurt/Main",
+   "cargo:address#country": "Germany"
+}
+```
+
+Response
+
+```http
+201 Created
+Location: https://1r.dbschenker.com/headquarter/location/address
+Content-Type: application/ld+json
+LO-type: https://onerecord.iata.org/address
+```
+
+*Link location and address*
+
+Request
+
+```http
+PATCH /headquarter/location HTTP/1.1
+Host: 1r.dbschenker.com
+Authorization: (Bearer Token)
+Content-Type: application/ld+json
+
+{
+  "revision":"2",
+  "description":"Backlink for street in location",
+  "operations":[
+      "op":"add",
+      "p":"https://onerecord.iata.org/companyBranch/location#address"
+      "o":{
+        "value":"https://1r.dbschenker.com/headquarter/location/address",
         "datatype":"https://www.w3.org/2001/XMLSchema#string"
         }
    ]
@@ -308,7 +512,7 @@ Request
 
 ```http
 PATCH /apple/product HTTP/1.1
-Host: 1r.platform.com 
+Host: 1r.platform.com
 Authorization: (Bearer Token)
 Content-Type: application/ld+json
 
@@ -365,11 +569,11 @@ LO-type: https://onerecord.iata.org/item
 
 *Backlink Item in product*
 
-Request 
+Request
 
 ```http
 PATCH /apple/product HTTP/1.1
-Host: 1r.platform.com 
+Host: 1r.platform.com
 Authorization: (Bearer Token)
 Content-Type: application/ld+json
 

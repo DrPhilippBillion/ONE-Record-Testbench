@@ -92,7 +92,6 @@ PATCH /apple/ HTTP/1.1
 Host: 1r.platform.com
 Authorization: (Bearer Token)
 Content-Type: application/ld+json
-
 {
   "revision":"2",
   "description":"Backlink for companyBranch in company",
@@ -149,7 +148,6 @@ PATCH /apple/headquarter HTTP/1.1
 Host: 1r.platform.com
 Authorization: (Bearer Token)
 Content-Type: application/ld+json
-
 {
   "revision":"2",
   "description":"Backlink for location in companyBranch",
@@ -211,7 +209,6 @@ PATCH /apple/headquarter/location HTTP/1.1
 Host: 1r.platform.com
 Authorization: (Bearer Token)
 Content-Type: application/ld+json
-
 {
   "revision":"2",
   "description":"Backlink for street in location",
@@ -297,7 +294,6 @@ PATCH / HTTP/1.1
 Host: 1r.dbschenker.com
 Authorization: (Bearer Token)
 Content-Type: application/ld+json
-
 {
   "revision":"2",
   "description":"Backlink for companyBranch in company",
@@ -354,7 +350,6 @@ PATCH /headquarter HTTP/1.1
 Host: 1r.dbschenker.com
 Authorization: (Bearer Token)
 Content-Type: application/ld+json
-
 {
   "revision":"2",
   "description":"Backlink for location in companyBranch",
@@ -415,7 +410,6 @@ PATCH /headquarter/location HTTP/1.1
 Host: 1r.dbschenker.com
 Authorization: (Bearer Token)
 Content-Type: application/ld+json
-
 {
   "revision":"2",
   "description":"Backlink for street in location",
@@ -502,7 +496,6 @@ PATCH / HTTP/1.1
 Host: 1r.lufthansa-cargo.com
 Authorization: (Bearer Token)
 Content-Type: application/ld+json
-
 {
   "revision":"2",
   "description":"Backlink for companyBranch in company",
@@ -559,7 +552,6 @@ PATCH /headquarter HTTP/1.1
 Host: 1r.lufthansa-cargo.com
 Authorization: (Bearer Token)
 Content-Type: application/ld+json
-
 {
   "revision":"2",
   "description":"Backlink for location in companyBranch",
@@ -620,7 +612,6 @@ PATCH /headquarter/location HTTP/1.1
 Host: 1r.lufthansa-cargo.com
 Authorization: (Bearer Token)
 Content-Type: application/ld+json
-
 {
   "revision":"2",
   "description":"Backlink for street in location",
@@ -783,7 +774,6 @@ PATCH /apple/product HTTP/1.1
 Host: 1r.platform.com
 Authorization: (Bearer Token)
 Content-Type: application/ld+json
-
 {
   "revision":"2",
   "description":"Backlink for item in product",
@@ -844,7 +834,6 @@ PATCH /apple/product HTTP/1.1
 Host: 1r.platform.com
 Authorization: (Bearer Token)
 Content-Type: application/ld+json
-
 {
   "revision":"3",
   "description":"Backlink for item in product",

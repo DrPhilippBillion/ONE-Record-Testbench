@@ -1,0 +1,561 @@
+{
+	"info": {
+		"_postman_id": "47180d18-3d1b-44f1-8506-ad68307a0753",
+		"name": "ONE Record Testbench",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Basic Test Data",
+			"item": [
+				{
+					"name": "Step 0 Create Shipper",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"@context\": {\n    \"iata-cargo\": \"https://onerecord.iata.org/\",\n    \"iata-api\": \"https://onerecord.iata.org/api/\"\n  },\n  \"@type\": \"https://onerecord.iata.org/api/CompanyInformation\",\n  \"iata-api:CompanyInformation#companyId\": \"shipper-name\",\n  \"iata-api:CompanyInformation#company\": {\n    \"@type\":\"iata-cargo:Company\",\n    \"iata-cargo:Company#name\": \"Shipper Corp.\"\n  },\n  \"iata-api:CompanyInformation#serverEndpoint\": \"http://localhost:8080/companies/shipper-name\",\n  \"iata-api:CompanyInformation#supportedContentTypes\": \"application/ld+json\",\n  \"iata-api:CompanyInformation#supportedLogisticsObjects\": [\n    \"iata-cargo:Waybill\",\n    \"iata-cargo:Shipment\",\n    \"iata-cargo:Booking\",\n    \"iata-cargo:Piece\",\n    \"iata-cargo:Item\",\n    \"iata-cargo:Product\",\n    \"iata-cargo:ServiceRequest\"\n  ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/companies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 0 Create Forwarder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"@context\": {\n    \"iata-cargo\": \"https://onerecord.iata.org/\",\n    \"iata-api\": \"https://onerecord.iata.org/api/\"\n  },\n  \"@type\": \"https://onerecord.iata.org/api/CompanyInformation\",\n  \"iata-api:CompanyInformation#companyId\": \"forwarder-name\",\n  \"iata-api:CompanyInformation#company\": {\n    \"@type\":\"iata-cargo:Company\",\n    \"iata-cargo:Company#name\": \"Forwarder Corp.\"\n  },\n  \"iata-api:CompanyInformation#serverEndpoint\": \"http://localhost:8080/companies/forwarder-name\",\n  \"iata-api:CompanyInformation#supportedContentTypes\": \"application/ld+json\",\n  \"iata-api:CompanyInformation#supportedLogisticsObjects\": [\n    \"iata-cargo:Waybill\",\n    \"iata-cargo:Shipment\",\n    \"iata-cargo:Booking\",\n    \"iata-cargo:Piece\",\n    \"iata-cargo:Item\",\n    \"iata-cargo:Product\",\n    \"iata-cargo:ServiceRequest\"\n  ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/companies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 0 Create Carrier / GHA",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"@context\": {\n    \"iata-cargo\": \"https://onerecord.iata.org/\",\n    \"iata-api\": \"https://onerecord.iata.org/api/\"\n  },\n  \"@type\": \"https://onerecord.iata.org/api/CompanyInformation\",\n  \"iata-api:CompanyInformation#companyId\": \"carrier-name\",\n  \"iata-api:CompanyInformation#company\": {\n    \"@type\":\"iata-cargo:Company\",\n    \"iata-cargo:Company#name\": \"Carrier Corp.\"\n  },\n  \"iata-api:CompanyInformation#serverEndpoint\": \"http://localhost:8080/companies/carrier-name\",\n  \"iata-api:CompanyInformation#supportedContentTypes\": \"application/ld+json\",\n  \"iata-api:CompanyInformation#supportedLogisticsObjects\": [\n    \"iata-cargo:Waybill\",\n    \"iata-cargo:Shipment\",\n    \"iata-cargo:Booking\",\n    \"iata-cargo:Piece\",\n    \"iata-cargo:Item\",\n    \"iata-cargo:Product\",\n    \"iata-cargo:ServiceRequest\"\n  ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/companies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 0 Carrier creates ULD",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@context\": {\n        \"cargo\": \"https://onerecord.iata.org/\",\n        \"api\": \"https://onerecord.iata.org/api/\"\n    },\n    \"@type\": \"cargo:ULD\",\n    \"cargo:ULD#serialNumber\": \"PMC12345XX\",\n    \"cargo:ULD#ownerCode\": \"XX\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/companies/carrier-name/los",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"companies",
+								"carrier-name",
+								"los"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "e2e Use Case",
+			"item": [
+				{
+					"name": "Step 1 Shipper creates piece",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@context\": {\n        \"cargo\": \"https://onerecord.iata.org/\",\n        \"api\": \"https://onerecord.iata.org/api/\"\n    },\n    \"@type\": \"cargo:Piece\",\n    \"cargo:Piece#grossWeight\": {        \n        \"@type\": \"cargo:Value\",\n        \"cargo:Value#value\": 85.0,\n        \"cargo:Value#unit\": \"kg\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/companies/shipper-name/los",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"companies",
+								"shipper-name",
+								"los"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 2.1: Shipper proposes a subscription to Forwarder",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/companies/forwarder-name?topic=https://onerecord.iata.org/Piece",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"companies",
+								"forwarder-name"
+							],
+							"query": [
+								{
+									"key": "topic",
+									"value": "https://onerecord.iata.org/Piece"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 2.2 Shipper sends notification about the creation of the Piece to Forwarder's callback endpoint",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@context\": {\n        \"cargo\": \"https://onerecord.iata.org/\",\n        \"api\": \"https://onerecord.iata.org/api/\"\n    },\n    \"@type\": \"api:Notification\",\n    \"api:Notification#eventType\": \"OBJECT_CREATED\",\n    \"api:Notification#topic\": \"cargo:Piece\",\n    \"api:Notification#logisticsObject\": {\n        \"@type\": \"cargo:LogisticsObject\",\n        \"@id\": \"http://localhost:8080/companies/shipper-name/los/Piece_280165\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/companies/forwarder-name/callback?topic=https://onerecord.iata.org/Piece",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"companies",
+								"forwarder-name",
+								"callback"
+							],
+							"query": [
+								{
+									"key": "topic",
+									"value": "https://onerecord.iata.org/Piece"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 3.1: Forwarder creates shipment with totalGrossWeight",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@context\": {\n        \"cargo\": \"https://onerecord.iata.org/\",\n        \"api\": \"https://onerecord.iata.org/api/\"\n    },\n    \"@type\": \"cargo:Shipment\",\n    \"cargo:Shipment#totalGrossWeight\": {\n        \"@type\": \"cargo:Value\",\n        \"cargo:Value#unit\": \"kg\",\n        \"cargo:Value#value\": 12000\n    },\n    \"cargo:Shipment#waybillNumber\": {\n        \"@type\": \"cargo:Waybill\",\n        \"cargo:Waybill#carrierDeclarationPlace\": {\n            \"@type\": \"cargo:Location\",\n            \"cargo:Location#code\": \"FRA\"\n        },        \n        \"cargo:Waybill#carrierDeclarationSignature\": \"Max Mustermann\"\n    },\n    \"cargo:Shipment#volumetricWeight\": {\n        \"@type\": \"cargo:VolumetricWeight\",\n        \"cargo:VolumetricWeight#conversionFactor\": {\n            \"@type\": \"cargo:Value\",\n            \"cargo:Value#value\": 167\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/companies/forwarder-name/los",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"companies",
+								"forwarder-name",
+								"los"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 3.2: Forwarder links piece in shipment",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@context\": {\n        \"cargo\": \"https://onerecord.iata.org/\",\n        \"api\": \"https://onerecord.iata.org/api/\"\n    },\n    \"@type\": [\n        \"api:PatchRequest\"\n    ],\n    \"api:PatchRequest#description\": \"Link piece in shipment\",\n    \"api:PatchRequest#logisticsObjectRef\": {\n        \"@type\": [\n            \"api:LogisticsObjectRef\"\n        ],\n        \"api:LogisticsObjectRef#logisticsObjectId\": \"http://localhost:8080/companies/forwarder-name/los/Shipment_765510\",\n        \"api:LogisticsObjectRef#logisticsObjectType\": \"cargo:Shipment\"\n    },\n    \"api:PatchRequest#operations\": [\n        {\n            \"@type\": [\n                \"api:Operation\"\n            ],\n            \"api:Operation#op\": \"add\",\n            \"api:Operation#p\": \"cargo:Piece#containedPieces\",\n            \"api:Operation#o\": {\n                \"@type\": \"api:OperationObject\",\n                \"api:OperationObject#datatype\": \"cargo:Piece\",\n                \"api:OperationObject#value\": {\n                    \"@id\": \"http://localhost:8080/companies/shipper-name/los/Piece_280165\",\n                    \"@type\": \"cargo:Piece\"\n                }\n            }\n        }\n    ],\n    \"api:PatchRequest#requestorCompanyIdentifier\": \"http://localhost:8080/companies/forwarder-name\",\n    \"api:PatchRequest#revision\": \"2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/companies/forwarder-name/los/Shipment_765510",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"companies",
+								"forwarder-name",
+								"los",
+								"Shipment_765510"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 3.3: Forwarder sets CR to Shipper/piece to set backlink for shipment",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@context\": {\n        \"cargo\": \"https://onerecord.iata.org/\",\n        \"api\": \"https://onerecord.iata.org/api/\"\n    },\n    \"@type\": [\n        \"api:PatchRequest\"\n    ],\n    \"api:PatchRequest#description\": \"Set backling to shipment in piece\",\n    \"api:PatchRequest#logisticsObjectRef\": {\n        \"@type\": \"api:LogisticsObjectRef\",\n        \"api:LogisticsObjectRef#logisticsObjectId\": \"http://localhost:8080/companies/shipper-name/los/Piece_280165\",\n        \"api:LogisticsObjectRef#logisticsObjectType\": \"cargo:Piece\"\n    },\n    \"api:PatchRequest#operations\": [\n        {\n            \"@type\": [\n                \"api:Operation\"\n            ],\n            \"api:Operation#op\": \"add\",\n            \"api:Operation#p\": \"cargo:Piece#shipment\",\n            \"api:Operation#o\": {\n                \"@type\": \"api:OperationObject\",\n                \"api:OperationObject#datatype\": \"cargo:Shipment\",\n                \"api:OperationObject#value\": {\n                    \"@id\": \"http://localhost:8080/companies/shipper-name/los/Shipment_765510\",\n                    \"@type\": \"cargo:Shipment\"\n                }\n            }\n        }\n    ],\n    \"api:PatchRequest#requestorCompanyIdentifier\": \"http://localhost:8080/companies/shipper-name\",\n    \"api:PatchRequest#revision\": \"2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/companies/shipper-name/los/Piece_280165",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"companies",
+								"shipper-name",
+								"los",
+								"Piece_280165"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 3.4.1: Forwarder proposes a subscription to Carrier/GHA",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/companies/carrier-name?topic=https://onerecord.iata.org/Shipment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"companies",
+								"carrier-name"
+							],
+							"query": [
+								{
+									"key": "topic",
+									"value": "https://onerecord.iata.org/Shipment"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 3.4.2 Forwarder sends notification about the creation of the Shipment to Carrier / GHA",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@context\": {\n        \"cargo\": \"https://onerecord.iata.org/\",\n        \"api\": \"https://onerecord.iata.org/api/\"\n    },\n    \"@type\": \"api:Notification\",\n    \"api:Notification#eventType\": \"OBJECT_CREATED\",\n    \"api:Notification#topic\": \"cargo:Shipment\",\n    \"api:Notification#logisticsObject\": {\n        \"@type\": \"cargo:LogisticsObject\",\n        \"@id\": \"http://localhost:8080/companies/forwarder-name/los/Shipment_540872\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/companies/forwarder-name/callback?topic=https://onerecord.iata.org/Piece",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"companies",
+								"forwarder-name",
+								"callback"
+							],
+							"query": [
+								{
+									"key": "topic",
+									"value": "https://onerecord.iata.org/Piece"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 3.5. Forwarder performs access delegation of piece to GHA",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@context\": {\n        \"cargo\": \"https://onerecord.iata.org/\",\n        \"api\": \"https://onerecord.iata.org/api/\"\n    },\n    \"@type\": \"api:DelegationRequest\",\n    \"api:DelegationRequest#desription\": \"Delegate access to piece to Carrier/GHA\",\n    \"api:DelegationRequest#action\": \"DELEGATE\",\n    \"api:DelegationRequest#operations\": [\n        \"GET\",\n        \"PATCH\"\n    ],\n    \"api:DelegationRequest#targetCompanies\": [\n        \"http://localhost:8080/companies/carrier-name\"\n    ],\n    \"api:DelegationRequest#targetLogisticsObjects\": [\n        {\n            \"@type\": \"https://onerecord.iata.org/api/LogisticsObjectRef\",\n            \"https://onerecord.iata.org/api/LogisticsObjectRef#logisticsObjectId\": \" http://localhost:8080/companies/shipper-name/los/Piece_690145\",\n            \"https://onerecord.iata.org/api/LogisticsObjectRef#logisticsObjectType\": \"cargo:Piece\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/companies/shipper-name/delegation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"companies",
+								"shipper-name",
+								"delegation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 4.1: GHA/Carrier links piece with ULD",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@context\": {\n        \"cargo\": \"https://onerecord.iata.org/\",\n        \"api\": \"https://onerecord.iata.org/api/\"\n    },\n    \"@type\": [\n        \"api:PatchRequest\"\n    ],\n    \"api:PatchRequest#description\": \"Link piece with ULD\",\n    \"api:PatchRequest#logisticsObjectRef\": {\n        \"@type\": \"api:LogisticsObjectRef\",\n        \"api:LogisticsObjectRef#logisticsObjectId\": \"http://localhost:8080/companies/shipper-name/los/Piece_690145\",\n        \"api:LogisticsObjectRef#logisticsObjectType\": \"cargo:Piece\"\n    },\n    \"api:PatchRequest#operations\": [\n        {\n            \"@type\": [\n                \"api:Operation\"\n            ],\n            \"api:Operation#op\": \"add\",\n            \"api:Operation#p\": \"cargo:Piece#uldReference\",\n            \"api:Operation#o\": {\n                \"@type\": \"api:OperationObject\",\n                \"api:OperationObject#datatype\": \"cargo:ULD\",\n                \"api:OperationObject#value\": {\n                    \"@id\": \"http://localhost:8080/companies/carrier-name/los/ULD_812762\",\n                    \"@type\": \"cargo:Piece\"\n                }\n            }\n        }\n    ],\n    \"api:PatchRequest#requestorCompanyIdentifier\": \"http://localhost:8080/companies/carrier-name\",\n    \"api:PatchRequest#revision\": \"3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/companies/shipper-name/los/Piece_690145",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"companies",
+								"shipper-name",
+								"los",
+								"Piece_690145"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 4.2: GHA/Carrier links ULD with piece",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@context\": {\n        \"cargo\": \"https://onerecord.iata.org/\",\n        \"api\": \"https://onerecord.iata.org/api/\"\n    },\n    \"@type\": [\n        \"api:PatchRequest\"\n    ],\n    \"api:PatchRequest#description\": \"Link ULD with piece\",\n    \"api:PatchRequest#logisticsObjectRef\": {\n        \"@type\": \"api:LogisticsObjectRef\",\n        \"api:LogisticsObjectRef#logisticsObjectId\": \"http://localhost:8080/companies/carrier-name/los/ULD_812762\",\n        \"api:LogisticsObjectRef#logisticsObjectType\": \"cargo:ULD\"\n    },\n    \"api:PatchRequest#operations\": [\n        {\n            \"@type\": [\n                \"api:Operation\"\n            ],\n            \"api:Operation#op\": \"add\",\n            \"api:Operation#p\": \"cargo:ULD#upid\",\n            \"api:Operation#o\": {\n                \"@type\": \"api:OperationObject\",\n                \"api:OperationObject#datatype\": \"cargo:Piece\",\n                \"api:OperationObject#value\": {\n                    \"@id\": \"http://localhost:8080/companies/shipper-name/los/Piece_690145\",\n                    \"@type\": \"cargo:Piece\"\n                }\n            }\n        }\n    ],\n    \"api:PatchRequest#requestorCompanyIdentifier\": \"http://localhost:8080/companies/shipper-name\",\n    \"api:PatchRequest#revision\": \"3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/companies/carrier-name/los/ULD_812762",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"companies",
+								"carrier-name",
+								"los",
+								"ULD_812762"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
